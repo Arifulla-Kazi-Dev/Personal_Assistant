@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A lightweight personal assistant dashboard for routines, tasks, fitness, diet, reminders, and notes.">
+    <title>Personal Assistant Dashboard</title>
+    <link rel="stylesheet" href="./app.css">
+    <script src="./app.js" defer></script>
+    <script src="./Personal.js" defer></script>
+</head>
+<body data-page="dashboard">
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header">
+        <nav class="navbar" aria-label="Primary navigation">
+            <a class="brand" href="./Index.html">
+                <span class="brand-mark" data-icon="assistant" aria-hidden="true"></span>
+                <span class="brand-text">
+                    <span>Personal Assistant</span>
+                    <span>Daily command center</span>
+                </span>
+            </a>
+
+            <div class="nav-menu" id="primary-menu">
+                <a class="nav-link" href="./Index.html" data-icon="dashboard">Dashboard</a>
+                <a class="nav-link" href="./Profile.html" data-icon="user">Profile</a>
+                <a class="nav-link" href="./TimeTable.html" data-icon="calendar">Routine</a>
+                <a class="nav-link" href="./Diet.html" data-icon="salad">Diet</a>
+                <a class="nav-link" href="./Exercise.html" data-icon="dumbbell">Fitness</a>
+                <a class="nav-link" href="./Task.html" data-icon="tasks">Tasks</a>
+            </div>
+
+            <div class="nav-actions">
+                <button class="theme-toggle" type="button" data-theme-toggle></button>
+                <button class="icon-button nav-toggle" type="button" data-nav-toggle aria-label="Open navigation" aria-controls="primary-menu" aria-expanded="false"></button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="app-shell" id="main">
+        <section class="dashboard-hero" aria-labelledby="dashboard-title">
+            <div class="hero-panel">
+                <div class="hero-content">
+                    <p class="eyebrow">Personal productivity dashboard</p>
+                    <h1 id="dashboard-title">Keep today calm, organized, and moving.</h1>
+                    <p class="lead">Plan routines, capture tasks, review wellness, and keep your reminders in one quick assistant-style workspace.</p>
+                    <div class="hero-actions">
+                        <a class="btn btn-primary" href="./Task.html"><span data-icon="plus" aria-hidden="true"></span>Add a Task</a>
+                        <a class="btn" href="./TimeTable.html"><span data-icon="calendar" aria-hidden="true"></span>Plan Routine</a>
+                    </div>
+                </div>
+            </div>
+
+            <aside class="hero-aside" aria-label="Today overview">
+                <div class="today-meta">
+                    <span data-current-date>Today</span>
+                    <span>Local</span>
+                </div>
+                <div class="clock" data-clock>--:--</div>
+                <form class="compact-form" id="focusForm">
+                    <label for="dailyFocus">Main focus</label>
+                    <div class="input-line">
+                        <input id="dailyFocus" type="text" placeholder="What matters most today?">
+                        <button class="icon-button" type="submit" aria-label="Save focus"><span data-icon="save" aria-hidden="true"></span></button>
+                    </div>
+                </form>
+                <p class="muted" id="focusStatus" aria-live="polite"></p>
+            </aside>
+        </section>
+
+        <section class="metric-grid" aria-label="Dashboard metrics">
+            <article class="stat-card">
+                <span class="stat-icon" data-icon="tasks" aria-hidden="true"></span>
+                <div>
+                    <strong id="metricPendingTasks">0</strong>
+                    <span>Pending tasks</span>
+                </div>
+            </article>
+            <article class="stat-card">
+                <span class="stat-icon" data-icon="calendar" aria-hidden="true"></span>
+                <div>
+                    <strong id="metricRoutineItems">0</strong>
+                    <span>Routine blocks</span>
+                </div>
+            </article>
+            <article class="stat-card">
+                <span class="stat-icon" data-icon="dumbbell" aria-hidden="true"></span>
+                <div>
+                    <strong id="metricFitnessMinutes">0</strong>
+                    <span>Fitness minutes</span>
+                </div>
+            </article>
+            <article class="stat-card">
+                <span class="stat-icon" data-icon="bell" aria-hidden="true"></span>
+                <div>
+                    <strong id="metricReminders">0</strong>
+                    <span>Open reminders</span>
+                </div>
+            </article>
+        </section>
+
+        <section class="dashboard-grid" aria-label="Daily planning sections">
+            <div class="stack">
+                <section class="panel" aria-labelledby="routine-title">
+                    <div class="section-head">
+                        <div class="section-title">
+                            <span class="section-icon" data-icon="clock" aria-hidden="true"></span>
+                            <div>
+                                <h2 id="routine-title">Daily Routine</h2>
+                                <p class="muted">Your schedule from the routine planner, with smart defaults until you add your own.</p>
+                            </div>
+                        </div>
+                        <a class="btn" href="./TimeTable.html">Manage</a>
+                    </div>
+                    <ul class="routine-list" id="dashboardRoutineList"></ul>
+                </section>
+
+                <section class="panel" aria-labelledby="tasks-title">
+                    <div class="section-head">
+                        <div class="section-title">
+                            <span class="section-icon" data-icon="target" aria-hidden="true"></span>
+                            <div>
+                                <h2 id="tasks-title">Task Focus</h2>
+                                <p class="muted">The next items that need attention, sorted by due date.</p>
+                            </div>
+                        </div>
+                        <a class="btn" href="./Task.html">Open Tasks</a>
+                    </div>
+                    <ul class="task-list" id="dashboardTaskList"></ul>
+                </section>
+
+                <section class="panel" aria-labelledby="quick-links-title">
+                    <div class="section-head">
+                        <div class="section-title">
+                            <span class="section-icon" data-icon="spark" aria-hidden="true"></span>
+                            <div>
+                                <h2 id="quick-links-title">Assistant Modules</h2>
+                                <p class="muted">Jump straight into the part of the day you want to refine.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="quick-links">
+                        <a class="quick-link" href="./Profile.html">
+                            <span class="section-icon" data-icon="user" aria-hidden="true"></span>
+                            <span><strong>Profile</strong><span>Personal details, goals, skills, and preferences.</span></span>
+                        </a>
+                        <a class="quick-link" href="./Diet.html">
+                            <span class="section-icon" data-icon="salad" aria-hidden="true"></span>
+                            <span><strong>Diet Plan</strong><span>Calories, meals, hydration, and grocery ideas.</span></span>
+                        </a>
+                        <a class="quick-link" href="./Exercise.html">
+                            <span class="section-icon" data-icon="dumbbell" aria-hidden="true"></span>
+                            <span><strong>Fitness</strong><span>Training log, weekly minutes, and calories burned.</span></span>
+                        </a>
+                    </div>
+                </section>
+            </div>
+
+            <aside class="stack">
+                <section class="panel" aria-labelledby="wellness-title">
+                    <div class="section-title">
+                        <span class="section-icon" data-icon="water" aria-hidden="true"></span>
+                        <div>
+                            <h2 id="wellness-title">Wellness Snapshot</h2>
+                            <p class="muted">Diet and fitness signals from your saved trackers.</p>
+                        </div>
+                    </div>
+                    <div class="stats-strip" id="wellnessStats"></div>
+                </section>
+
+                <section class="panel" aria-labelledby="checklist-title">
+                    <div class="section-title">
+                        <span class="section-icon" data-icon="check" aria-hidden="true"></span>
+                        <div>
+                            <h2 id="checklist-title">Daily Checklist</h2>
+                            <p class="muted">Small anchors that keep the day from drifting.</p>
+                        </div>
+                    </div>
+                    <div class="stack" id="dailyChecklist"></div>
+                </section>
+
+                <section class="panel" aria-labelledby="reminders-title">
+                    <div class="section-head">
+                        <div class="section-title">
+                            <span class="section-icon" data-icon="bell" aria-hidden="true"></span>
+                            <div>
+                                <h2 id="reminders-title">Reminders</h2>
+                                <p class="muted">Lightweight nudges for anything you do not want to forget.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <form class="compact-form" id="reminderForm">
+                        <label for="reminderTitle">Reminder</label>
+                        <input id="reminderTitle" type="text" placeholder="Pay bill, call someone, prep bag">
+                        <label for="reminderTime">Time</label>
+                        <div class="input-line">
+                            <input id="reminderTime" type="time">
+                            <button class="icon-button" type="submit" aria-label="Add reminder"><span data-icon="plus" aria-hidden="true"></span></button>
+                        </div>
+                    </form>
+                    <ul class="list" id="reminderList"></ul>
+                </section>
+
+                <section class="panel" aria-labelledby="notes-title">
+                    <div class="section-title">
+                        <span class="section-icon" data-icon="note" aria-hidden="true"></span>
+                        <div>
+                            <h2 id="notes-title">Personal Notes</h2>
+                            <p class="muted">Capture quick thoughts, ideas, or decisions before they disappear.</p>
+                        </div>
+                    </div>
+                    <form class="compact-form" id="noteForm">
+                        <label for="noteText">Note</label>
+                        <textarea id="noteText" placeholder="Write a quick note..."></textarea>
+                        <button class="primary-action" type="submit"><span data-icon="plus" aria-hidden="true"></span>Add Note</button>
+                    </form>
+                    <ul class="note-list" id="noteList"></ul>
+                </section>
+            </aside>
+        </section>
+    </main>
+
+    <footer class="footer">Designed as a lightweight offline-first personal assistant using local browser storage.</footer>
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Personal task manager with priorities, due dates, filters, completion tracking, and local browser storage.">
+    <title>Tasks | Personal Assistant</title>
+    <link rel="stylesheet" href="./app.css">
+    <script src="./app.js" defer></script>
+    <script src="./Task.js" defer></script>
+</head>
+<body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header">
+        <nav class="navbar" aria-label="Primary navigation">
+            <a class="brand" href="./Index.html">
+                <span class="brand-mark" data-icon="assistant" aria-hidden="true"></span>
+                <span class="brand-text">
+                    <span>Personal Assistant</span>
+                    <span>Daily command center</span>
+                </span>
+            </a>
+            <div class="nav-menu" id="primary-menu">
+                <a class="nav-link" href="./Index.html" data-icon="dashboard">Dashboard</a>
+                <a class="nav-link" href="./Profile.html" data-icon="user">Profile</a>
+                <a class="nav-link" href="./TimeTable.html" data-icon="calendar">Routine</a>
+                <a class="nav-link" href="./Diet.html" data-icon="salad">Diet</a>
+                <a class="nav-link" href="./Exercise.html" data-icon="dumbbell">Fitness</a>
+                <a class="nav-link" href="./Task.html" data-icon="tasks">Tasks</a>
+            </div>
+            <div class="nav-actions">
+                <button class="theme-toggle" type="button" data-theme-toggle></button>
+                <button class="icon-button nav-toggle" type="button" data-nav-toggle aria-label="Open navigation" aria-controls="primary-menu" aria-expanded="false"></button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="app-shell" id="main">
+        <section class="page-hero" aria-labelledby="task-title">
+            <div class="hero-panel">
+                <div class="hero-content">
+                    <p class="eyebrow">Task manager</p>
+                    <h1 id="task-title">Turn loose thoughts into clear next actions.</h1>
+                    <p class="lead">Capture tasks with priority, due dates, search, filters, and completion stats that feed back into your dashboard.</p>
+                </div>
+            </div>
+            <aside class="hero-aside">
+                <div class="section-title">
+                    <span class="section-icon" data-icon="tasks" aria-hidden="true"></span>
+                    <div>
+                        <h2>Task Statistics</h2>
+                        <p class="muted">A quick view of your current workload.</p>
+                    </div>
+                </div>
+                <div class="stats-strip">
+                    <div class="mini-stat"><strong id="totalTasks">0</strong><span>Total</span></div>
+                    <div class="mini-stat"><strong id="completedTasks">0</strong><span>Completed</span></div>
+                    <div class="mini-stat"><strong id="pendingTasks">0</strong><span>Pending</span></div>
+                </div>
+            </aside>
+        </section>
+
+        <section class="task-page-layout">
+            <div class="form-panel">
+                <div class="section-title">
+                    <span class="section-icon" data-icon="plus" aria-hidden="true"></span>
+                    <h2>Add New Task</h2>
+                </div>
+                <form id="taskForm" class="form-grid">
+                    <div class="full">
+                        <label for="taskName">Task name</label>
+                        <input type="text" id="taskName" autocomplete="off" placeholder="Finish project report" required>
+                    </div>
+                    <div class="full">
+                        <label for="taskDescription">Description</label>
+                        <textarea id="taskDescription" rows="3" placeholder="Optional context, links, or notes"></textarea>
+                    </div>
+                    <div>
+                        <label for="taskPriority">Priority</label>
+                        <select id="taskPriority">
+                            <option value="high">High</option>
+                            <option value="medium" selected>Medium</option>
+                            <option value="low">Low</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="taskDueDate">Due date</label>
+                        <input type="date" id="taskDueDate" required>
+                    </div>
+                    <div class="form-actions full">
+                        <button type="submit"><span data-icon="plus" aria-hidden="true"></span>Add Task</button>
+                        <p class="status-message" id="taskStatus" aria-live="polite"></p>
+                    </div>
+                </form>
+            </div>
+
+            <section class="panel" aria-labelledby="task-list-title">
+                <div class="section-head">
+                    <div class="section-title">
+                        <span class="section-icon" data-icon="target" aria-hidden="true"></span>
+                        <div>
+                            <h2 id="task-list-title">Your Tasks</h2>
+                            <p class="muted">Search, filter, complete, or remove tasks without leaving the page.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="toolbar">
+                    <label class="sr-only" for="searchTask">Search tasks</label>
+                    <input type="search" id="searchTask" placeholder="Search tasks...">
+                    <label class="sr-only" for="filterPriority">Filter tasks</label>
+                    <select id="filterPriority">
+                        <option value="all">All tasks</option>
+                        <option value="high">High priority</option>
+                        <option value="medium">Medium priority</option>
+                        <option value="low">Low priority</option>
+                        <option value="completed">Completed</option>
+                        <option value="pending">Pending</option>
+                    </select>
+                    <label class="sr-only" for="sortTasks">Sort tasks</label>
+                    <select id="sortTasks">
+                        <option value="due">Sort by due date</option>
+                        <option value="priority">Sort by priority</option>
+                        <option value="created">Sort by newest</option>
+                    </select>
+                </div>
+
+                <ul class="task-list" id="taskList" aria-live="polite"></ul>
+            </section>
+        </section>
+    </main>
+
+    <footer class="footer">Tasks are stored locally and appear in your dashboard overview.</footer>
+</body>
+</html>

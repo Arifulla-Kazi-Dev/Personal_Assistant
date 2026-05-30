@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Exercise routine tracker with weekly goals, progress, calories, and editable workout log.">
+    <title>Fitness Routine | Personal Assistant</title>
+    <link rel="stylesheet" href="./app.css">
+    <script src="./app.js" defer></script>
+    <script src="./Exercise.js" defer></script>
+</head>
+<body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header">
+        <nav class="navbar" aria-label="Primary navigation">
+            <a class="brand" href="./Index.html">
+                <span class="brand-mark" data-icon="assistant" aria-hidden="true"></span>
+                <span class="brand-text">
+                    <span>Personal Assistant</span>
+                    <span>Daily command center</span>
+                </span>
+            </a>
+            <div class="nav-menu" id="primary-menu">
+                <a class="nav-link" href="./Index.html" data-icon="dashboard">Dashboard</a>
+                <a class="nav-link" href="./Profile.html" data-icon="user">Profile</a>
+                <a class="nav-link" href="./TimeTable.html" data-icon="calendar">Routine</a>
+                <a class="nav-link" href="./Diet.html" data-icon="salad">Diet</a>
+                <a class="nav-link" href="./Exercise.html" data-icon="dumbbell">Fitness</a>
+                <a class="nav-link" href="./Task.html" data-icon="tasks">Tasks</a>
+            </div>
+            <div class="nav-actions">
+                <button class="theme-toggle" type="button" data-theme-toggle></button>
+                <button class="icon-button nav-toggle" type="button" data-nav-toggle aria-label="Open navigation" aria-controls="primary-menu" aria-expanded="false"></button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="app-shell" id="main">
+        <section class="page-hero" aria-labelledby="fitness-title">
+            <div class="hero-panel">
+                <div class="hero-content">
+                    <p class="eyebrow">Fitness tracker</p>
+                    <h1 id="fitness-title">Track training without making it feel like paperwork.</h1>
+                    <p class="lead">Log exercise type, duration, and calories. Your weekly progress rolls into the main dashboard automatically.</p>
+                </div>
+            </div>
+            <aside class="hero-aside">
+                <div class="section-title">
+                    <span class="section-icon" data-icon="dumbbell" aria-hidden="true"></span>
+                    <div>
+                        <h2>Weekly Progress</h2>
+                        <p class="muted" id="progress-text">0/300 minutes completed</p>
+                    </div>
+                </div>
+                <div class="progress-track" aria-hidden="true">
+                    <div class="progress-fill" id="progress-fill"></div>
+                </div>
+                <div class="stats-strip">
+                    <div class="mini-stat"><strong id="fitnessMinutesMetric">0</strong><span>Minutes</span></div>
+                    <div class="mini-stat"><strong id="fitnessCaloriesMetric">0</strong><span>Calories</span></div>
+                    <div class="mini-stat"><strong id="fitnessSessionsMetric">0</strong><span>Sessions</span></div>
+                </div>
+            </aside>
+        </section>
+
+        <section class="wellness-layout">
+            <div class="form-panel" id="exercise-form-section">
+                <div class="section-title">
+                    <span class="section-icon" data-icon="plus" aria-hidden="true"></span>
+                    <h2>Add Exercise</h2>
+                </div>
+                <form id="exercise-form" class="form-grid">
+                    <div class="full">
+                        <label for="exercise-name">Exercise name</label>
+                        <input type="text" id="exercise-name" placeholder="Run, push workout, yoga" required>
+                    </div>
+                    <div>
+                        <label for="exercise-type">Type</label>
+                        <select id="exercise-type" required>
+                            <option value="Cardio">Cardio</option>
+                            <option value="Strength">Strength</option>
+                            <option value="Flexibility">Flexibility</option>
+                            <option value="Balance">Balance</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="exercise-duration">Duration (minutes)</label>
+                        <input type="number" id="exercise-duration" min="1" required>
+                    </div>
+                    <div>
+                        <label for="calories-burned">Calories burned</label>
+                        <input type="number" id="calories-burned" min="1" required>
+                    </div>
+                    <div>
+                        <label for="weekly-goal">Weekly goal (minutes)</label>
+                        <input type="number" id="weekly-goal" min="30" step="15" value="300">
+                    </div>
+                    <div class="form-actions full">
+                        <button type="submit"><span data-icon="plus" aria-hidden="true"></span>Add Exercise</button>
+                        <p class="status-message" id="exerciseStatus" aria-live="polite"></p>
+                    </div>
+                </form>
+            </div>
+
+            <section class="panel" id="exercise-log-section" aria-labelledby="exercise-log-title">
+                <div class="section-head">
+                    <div class="section-title">
+                        <span class="section-icon" data-icon="note" aria-hidden="true"></span>
+                        <div>
+                            <h2 id="exercise-log-title">Exercise Log</h2>
+                            <p class="muted">Edit by loading an entry back into the form, or remove it when needed.</p>
+                        </div>
+                    </div>
+                </div>
+                <ul class="list" id="exercise-log" aria-live="polite"></ul>
+            </section>
+        </section>
+    </main>
+
+    <footer class="footer">Fitness entries are saved locally and summarized on the dashboard.</footer>
+</body>
+</html>

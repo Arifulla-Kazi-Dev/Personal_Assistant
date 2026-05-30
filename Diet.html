@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Lightweight diet planner with calories, meals, hydration target, meal ideas, and grocery list.">
+    <title>Diet Plan | Personal Assistant</title>
+    <link rel="stylesheet" href="./app.css">
+    <script src="./app.js" defer></script>
+    <script src="./Diet.js" defer></script>
+</head>
+<body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header">
+        <nav class="navbar" aria-label="Primary navigation">
+            <a class="brand" href="./Index.html">
+                <span class="brand-mark" data-icon="assistant" aria-hidden="true"></span>
+                <span class="brand-text">
+                    <span>Personal Assistant</span>
+                    <span>Daily command center</span>
+                </span>
+            </a>
+            <div class="nav-menu" id="primary-menu">
+                <a class="nav-link" href="./Index.html" data-icon="dashboard">Dashboard</a>
+                <a class="nav-link" href="./Profile.html" data-icon="user">Profile</a>
+                <a class="nav-link" href="./TimeTable.html" data-icon="calendar">Routine</a>
+                <a class="nav-link" href="./Diet.html" data-icon="salad">Diet</a>
+                <a class="nav-link" href="./Exercise.html" data-icon="dumbbell">Fitness</a>
+                <a class="nav-link" href="./Task.html" data-icon="tasks">Tasks</a>
+            </div>
+            <div class="nav-actions">
+                <button class="theme-toggle" type="button" data-theme-toggle></button>
+                <button class="icon-button nav-toggle" type="button" data-nav-toggle aria-label="Open navigation" aria-controls="primary-menu" aria-expanded="false"></button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="app-shell" id="main">
+        <section class="page-hero" aria-labelledby="diet-title">
+            <div class="hero-panel">
+                <div class="hero-content">
+                    <p class="eyebrow">Diet and meal planning</p>
+                    <h1 id="diet-title">Make food planning simple enough to actually follow.</h1>
+                    <p class="lead">Set your calories, meal count, protein and hydration targets, then generate a practical meal outline and grocery list.</p>
+                </div>
+            </div>
+            <aside class="hero-aside">
+                <div class="section-title">
+                    <span class="section-icon" data-icon="salad" aria-hidden="true"></span>
+                    <div>
+                        <h2>Diet Snapshot</h2>
+                        <p class="muted">Saved settings also appear on the dashboard.</p>
+                    </div>
+                </div>
+                <div class="stats-strip">
+                    <div class="mini-stat"><strong id="dietCaloriesMetric">--</strong><span>Calories</span></div>
+                    <div class="mini-stat"><strong id="dietMealsMetric">--</strong><span>Meals</span></div>
+                    <div class="mini-stat"><strong id="dietWaterMetric">--</strong><span>Water</span></div>
+                </div>
+            </aside>
+        </section>
+
+        <section class="wellness-layout">
+            <div class="form-panel">
+                <div class="section-title">
+                    <span class="section-icon" data-icon="target" aria-hidden="true"></span>
+                    <h2>Plan Settings</h2>
+                </div>
+                <form id="dietForm" class="form-grid">
+                    <div>
+                        <label for="calories">Daily calorie intake</label>
+                        <input type="number" id="calories" min="800" step="50" placeholder="e.g., 2000" required>
+                    </div>
+                    <div>
+                        <label for="meals">Meals per day</label>
+                        <input type="number" id="meals" min="2" max="6" placeholder="e.g., 3" required>
+                    </div>
+                    <div>
+                        <label for="dietGoal">Goal</label>
+                        <select id="dietGoal">
+                            <option value="balanced">Balanced</option>
+                            <option value="lean">Lean protein</option>
+                            <option value="energy">Energy focused</option>
+                            <option value="light">Light meals</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="proteinTarget">Protein target (g)</label>
+                        <input type="number" id="proteinTarget" min="20" step="5" placeholder="e.g., 100">
+                    </div>
+                    <div>
+                        <label for="waterTarget">Water target</label>
+                        <input type="text" id="waterTarget" placeholder="e.g., 2.5 L">
+                    </div>
+                    <div>
+                        <label for="dietPreference">Preference</label>
+                        <select id="dietPreference">
+                            <option value="mixed">Mixed</option>
+                            <option value="vegetarian">Vegetarian</option>
+                            <option value="high-fiber">High fiber</option>
+                        </select>
+                    </div>
+                    <div class="form-actions full">
+                        <button type="submit"><span data-icon="spark" aria-hidden="true"></span>Generate Diet Plan</button>
+                        <p class="status-message" id="dietStatus" aria-live="polite"></p>
+                    </div>
+                </form>
+            </div>
+
+            <div class="stack">
+                <section class="panel" aria-labelledby="meal-list-title">
+                    <div class="section-title">
+                        <span class="section-icon" data-icon="clock" aria-hidden="true"></span>
+                        <h2 id="meal-list-title">Meal Outline</h2>
+                    </div>
+                    <div id="mealList" class="meal-grid"></div>
+                </section>
+
+                <section class="panel" aria-labelledby="grocery-title">
+                    <div class="section-title">
+                        <span class="section-icon" data-icon="note" aria-hidden="true"></span>
+                        <h2 id="grocery-title">Grocery List</h2>
+                    </div>
+                    <div id="groceryItems"></div>
+                </section>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">This planner is a lightweight organizer, not medical advice. Adjust it to your personal needs.</footer>
+</body>
+</html>

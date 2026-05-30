@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Daily and weekly routine planner with time blocks, categories, and local storage.">
+    <title>Routine Planner | Personal Assistant</title>
+    <link rel="stylesheet" href="./app.css">
+    <script src="./app.js" defer></script>
+    <script src="./Time.js" defer></script>
+</head>
+<body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header">
+        <nav class="navbar" aria-label="Primary navigation">
+            <a class="brand" href="./Index.html">
+                <span class="brand-mark" data-icon="assistant" aria-hidden="true"></span>
+                <span class="brand-text">
+                    <span>Personal Assistant</span>
+                    <span>Daily command center</span>
+                </span>
+            </a>
+            <div class="nav-menu" id="primary-menu">
+                <a class="nav-link" href="./Index.html" data-icon="dashboard">Dashboard</a>
+                <a class="nav-link" href="./Profile.html" data-icon="user">Profile</a>
+                <a class="nav-link" href="./TimeTable.html" data-icon="calendar">Routine</a>
+                <a class="nav-link" href="./Diet.html" data-icon="salad">Diet</a>
+                <a class="nav-link" href="./Exercise.html" data-icon="dumbbell">Fitness</a>
+                <a class="nav-link" href="./Task.html" data-icon="tasks">Tasks</a>
+            </div>
+            <div class="nav-actions">
+                <button class="theme-toggle" type="button" data-theme-toggle></button>
+                <button class="icon-button nav-toggle" type="button" data-nav-toggle aria-label="Open navigation" aria-controls="primary-menu" aria-expanded="false"></button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="app-shell" id="main">
+        <section class="page-hero" aria-labelledby="routine-title">
+            <div class="hero-panel">
+                <div class="hero-content">
+                    <p class="eyebrow">Routine planner</p>
+                    <h1 id="routine-title">Shape your day into calm, clear blocks.</h1>
+                    <p class="lead">Add daily routines, study sessions, meals, workouts, and reminders. These blocks become the routine preview on your dashboard.</p>
+                </div>
+            </div>
+            <aside class="hero-aside">
+                <div class="section-title">
+                    <span class="section-icon" data-icon="calendar" aria-hidden="true"></span>
+                    <div>
+                        <h2>Week Overview</h2>
+                        <p class="muted">Routine density by day.</p>
+                    </div>
+                </div>
+                <div class="calendar-grid" id="weekOverview"></div>
+            </aside>
+        </section>
+
+        <section class="planner-layout">
+            <div class="form-panel">
+                <div class="section-title">
+                    <span class="section-icon" data-icon="plus" aria-hidden="true"></span>
+                    <h2>Add Routine Block</h2>
+                </div>
+                <form id="timetableForm" class="form-grid">
+                    <div class="full">
+                        <label for="task">Task or routine</label>
+                        <input type="text" id="task" name="task" placeholder="Deep work, gym, study, dinner" required>
+                    </div>
+                    <div>
+                        <label for="time">Time</label>
+                        <input type="time" id="time" name="time" required>
+                    </div>
+                    <div>
+                        <label for="day">Day</label>
+                        <select id="day" name="day">
+                            <option value="Everyday">Everyday</option>
+                            <option value="Monday">Monday</option>
+                            <option value="Tuesday">Tuesday</option>
+                            <option value="Wednesday">Wednesday</option>
+                            <option value="Thursday">Thursday</option>
+                            <option value="Friday">Friday</option>
+                            <option value="Saturday">Saturday</option>
+                            <option value="Sunday">Sunday</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="category">Category</label>
+                        <select id="category" name="category">
+                            <option value="Focus">Focus</option>
+                            <option value="Routine">Routine</option>
+                            <option value="Fitness">Fitness</option>
+                            <option value="Diet">Diet</option>
+                            <option value="Personal">Personal</option>
+                        </select>
+                    </div>
+                    <div class="form-actions full">
+                        <button type="submit"><span data-icon="plus" aria-hidden="true"></span>Add Block</button>
+                        <p class="status-message" id="routineStatus" aria-live="polite"></p>
+                    </div>
+                </form>
+            </div>
+
+            <section class="panel" id="timetableContainer" aria-labelledby="scheduled-title">
+                <div class="section-head">
+                    <div class="section-title">
+                        <span class="section-icon" data-icon="clock" aria-hidden="true"></span>
+                        <div>
+                            <h2 id="scheduled-title">Scheduled Blocks</h2>
+                            <p class="muted">Keep the day realistic: important blocks first, then habits and recovery.</p>
+                        </div>
+                    </div>
+                </div>
+                <ul class="routine-list timetable-list" id="timetableList" aria-live="polite"></ul>
+            </section>
+        </section>
+    </main>
+
+    <footer class="footer">Routine blocks are stored locally and summarized on your dashboard.</footer>
+</body>
+</html>

@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Personal profile, goals, health details, professional information, and lifestyle preferences.">
+    <title>Personal Profile | Personal Assistant</title>
+    <link rel="stylesheet" href="./app.css">
+    <script src="./app.js" defer></script>
+    <script src="./Profile.js" defer></script>
+</head>
+<body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header">
+        <nav class="navbar" aria-label="Primary navigation">
+            <a class="brand" href="./Index.html">
+                <span class="brand-mark" data-icon="assistant" aria-hidden="true"></span>
+                <span class="brand-text">
+                    <span>Personal Assistant</span>
+                    <span>Daily command center</span>
+                </span>
+            </a>
+            <div class="nav-menu" id="primary-menu">
+                <a class="nav-link" href="./Index.html" data-icon="dashboard">Dashboard</a>
+                <a class="nav-link" href="./Profile.html" data-icon="user">Profile</a>
+                <a class="nav-link" href="./TimeTable.html" data-icon="calendar">Routine</a>
+                <a class="nav-link" href="./Diet.html" data-icon="salad">Diet</a>
+                <a class="nav-link" href="./Exercise.html" data-icon="dumbbell">Fitness</a>
+                <a class="nav-link" href="./Task.html" data-icon="tasks">Tasks</a>
+            </div>
+            <div class="nav-actions">
+                <button class="theme-toggle" type="button" data-theme-toggle></button>
+                <button class="icon-button nav-toggle" type="button" data-nav-toggle aria-label="Open navigation" aria-controls="primary-menu" aria-expanded="false"></button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="app-shell" id="main">
+        <section class="page-hero" aria-labelledby="profile-title">
+            <div class="hero-panel">
+                <div class="hero-content">
+                    <p class="eyebrow">Personal information</p>
+                    <h1 id="profile-title">Build a profile your assistant can actually use.</h1>
+                    <p class="lead">Keep identity, health, goals, work context, and lifestyle preferences organized in one clean place.</p>
+                </div>
+            </div>
+            <aside class="hero-aside">
+                <div class="section-title">
+                    <span class="section-icon" data-icon="target" aria-hidden="true"></span>
+                    <div>
+                        <h2>Profile Snapshot</h2>
+                        <p class="muted">Saved locally in this browser.</p>
+                    </div>
+                </div>
+                <div class="stats-strip">
+                    <div class="mini-stat"><strong id="profileNameMetric">--</strong><span>Name</span></div>
+                    <div class="mini-stat"><strong id="profileBmiMetric">--</strong><span>BMI</span></div>
+                    <div class="mini-stat"><strong id="profileGoalMetric">--</strong><span>Goal focus</span></div>
+                </div>
+                <p class="status-message" id="profile-status" aria-live="polite"></p>
+            </aside>
+        </section>
+
+        <div class="profile-grid">
+            <section class="form-panel" id="basic-info" aria-labelledby="basic-info-title">
+                <div class="section-title">
+                    <span class="section-icon" data-icon="user" aria-hidden="true"></span>
+                    <h2 id="basic-info-title">Basic Information</h2>
+                </div>
+                <form class="form-grid">
+                    <div class="full">
+                        <label for="full-name">Full name</label>
+                        <input type="text" id="full-name" name="full-name" autocomplete="name" placeholder="Your name">
+                    </div>
+                    <div>
+                        <label for="age">Age</label>
+                        <input type="number" id="age" name="age" min="1" placeholder="21">
+                    </div>
+                    <div>
+                        <label for="gender">Gender</label>
+                        <select id="gender" name="gender">
+                            <option value="">Select</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="dob">Date of birth</label>
+                        <input type="date" id="dob" name="dob">
+                    </div>
+                    <div>
+                        <label for="contact-info">Contact information</label>
+                        <input type="text" id="contact-info" name="contact-info" autocomplete="tel" placeholder="Phone or email">
+                    </div>
+                    <div class="full">
+                        <label for="address">Address</label>
+                        <textarea id="address" name="address" placeholder="Address or location context"></textarea>
+                    </div>
+                    <div class="form-actions full">
+                        <button type="button" class="primary-action" id="save-basic-info"><span data-icon="save" aria-hidden="true"></span>Save Basic Info</button>
+                    </div>
+                </form>
+            </section>
+
+            <section class="form-panel" id="physical-stats" aria-labelledby="physical-stats-title">
+                <div class="section-title">
+                    <span class="section-icon" data-icon="dumbbell" aria-hidden="true"></span>
+                    <h2 id="physical-stats-title">Physical Stats</h2>
+                </div>
+                <form class="form-grid">
+                    <div>
+                        <label for="height">Height (cm)</label>
+                        <input type="number" id="height" name="height" min="1" placeholder="175">
+                    </div>
+                    <div>
+                        <label for="weight">Weight (kg)</label>
+                        <input type="number" id="weight" name="weight" min="1" placeholder="70">
+                    </div>
+                    <div class="full">
+                        <label for="bmi">BMI</label>
+                        <input type="text" id="bmi" name="bmi" readonly placeholder="Auto calculated">
+                    </div>
+                    <div class="form-actions full">
+                        <button type="button" class="primary-action" id="save-physical-stats"><span data-icon="save" aria-hidden="true"></span>Save Physical Stats</button>
+                    </div>
+                </form>
+            </section>
+
+            <section class="form-panel" id="hobbies-interests" aria-labelledby="hobbies-title">
+                <div class="section-title">
+                    <span class="section-icon" data-icon="spark" aria-hidden="true"></span>
+                    <h2 id="hobbies-title">Routine and Interests</h2>
+                </div>
+                <form class="form-grid">
+                    <div class="full">
+                        <label for="hobbies">Hobbies</label>
+                        <textarea id="hobbies" name="hobbies" placeholder="Reading, coding, cricket, music..."></textarea>
+                    </div>
+                    <div>
+                        <label for="favorite-foods">Favorite foods</label>
+                        <textarea id="favorite-foods" name="favorite-foods" placeholder="Foods you like or prefer"></textarea>
+                    </div>
+                    <div>
+                        <label for="daily-routine">Daily routine</label>
+                        <textarea id="daily-routine" name="daily-routine" placeholder="Morning, work, study, evening habits"></textarea>
+                    </div>
+                    <div class="form-actions full">
+                        <button type="button" class="primary-action" id="save-hobbies-interests"><span data-icon="save" aria-hidden="true"></span>Save Routine & Interests</button>
+                    </div>
+                </form>
+            </section>
+
+            <section class="form-panel" id="professional-details" aria-labelledby="professional-title">
+                <div class="section-title">
+                    <span class="section-icon" data-icon="note" aria-hidden="true"></span>
+                    <h2 id="professional-title">Professional Details</h2>
+                </div>
+                <form class="form-grid">
+                    <div>
+                        <label for="job-title">Job title</label>
+                        <input type="text" id="job-title" name="job-title" placeholder="Developer, student, designer">
+                    </div>
+                    <div>
+                        <label for="company">Company or school</label>
+                        <input type="text" id="company" name="company" placeholder="Organization">
+                    </div>
+                    <div class="full">
+                        <label for="work-experience">Work experience</label>
+                        <textarea id="work-experience" name="work-experience" placeholder="Current work, projects, internships"></textarea>
+                    </div>
+                    <div>
+                        <label for="skills">Skills</label>
+                        <textarea id="skills" name="skills" placeholder="JavaScript, Python, communication..."></textarea>
+                    </div>
+                    <div>
+                        <label for="education">Education</label>
+                        <textarea id="education" name="education" placeholder="Degrees, courses, certifications"></textarea>
+                    </div>
+                    <div class="form-actions full">
+                        <button type="button" class="primary-action" id="save-professional-details"><span data-icon="save" aria-hidden="true"></span>Save Professional Details</button>
+                    </div>
+                </form>
+            </section>
+
+            <section class="form-panel" id="goals-aspirations" aria-labelledby="goals-title">
+                <div class="section-title">
+                    <span class="section-icon" data-icon="target" aria-hidden="true"></span>
+                    <h2 id="goals-title">Goals and Aspirations</h2>
+                </div>
+                <form class="form-grid">
+                    <div>
+                        <label for="short-term-goals">Short-term goals</label>
+                        <textarea id="short-term-goals" name="short-term-goals" placeholder="This month, this semester, this quarter"></textarea>
+                    </div>
+                    <div>
+                        <label for="long-term-goals">Long-term goals</label>
+                        <textarea id="long-term-goals" name="long-term-goals" placeholder="Career, health, learning, lifestyle"></textarea>
+                    </div>
+                    <div class="form-actions full">
+                        <button type="button" class="primary-action" id="save-goals-aspirations"><span data-icon="save" aria-hidden="true"></span>Save Goals</button>
+                    </div>
+                </form>
+            </section>
+
+            <section class="form-panel" id="health-fitness" aria-labelledby="health-title">
+                <div class="section-title">
+                    <span class="section-icon" data-icon="water" aria-hidden="true"></span>
+                    <h2 id="health-title">Health and Fitness</h2>
+                </div>
+                <form class="form-grid">
+                    <div>
+                        <label for="fitness-routine">Fitness routine</label>
+                        <textarea id="fitness-routine" name="fitness-routine" placeholder="Strength, cardio, mobility, sports"></textarea>
+                    </div>
+                    <div>
+                        <label for="health-goals">Health goals</label>
+                        <textarea id="health-goals" name="health-goals" placeholder="Sleep, stamina, weight, mobility"></textarea>
+                    </div>
+                    <div class="form-actions full">
+                        <button type="button" class="primary-action" id="save-health-fitness"><span data-icon="save" aria-hidden="true"></span>Save Health & Fitness</button>
+                    </div>
+                </form>
+            </section>
+
+            <section class="form-panel" id="social-profiles" aria-labelledby="social-title">
+                <div class="section-title">
+                    <span class="section-icon" data-icon="note" aria-hidden="true"></span>
+                    <h2 id="social-title">Social Profiles</h2>
+                </div>
+                <form>
+                    <label for="social-links">Social media links</label>
+                    <textarea id="social-links" name="social-links" placeholder="LinkedIn, GitHub, portfolio, social links"></textarea>
+                    <div class="form-actions">
+                        <button type="button" class="primary-action" id="save-social-profiles"><span data-icon="save" aria-hidden="true"></span>Save Social Profiles</button>
+                    </div>
+                </form>
+            </section>
+
+            <section class="form-panel" id="additional-preferences" aria-labelledby="preferences-title">
+                <div class="section-title">
+                    <span class="section-icon" data-icon="calendar" aria-hidden="true"></span>
+                    <h2 id="preferences-title">Additional Preferences</h2>
+                </div>
+                <form class="form-grid">
+                    <div>
+                        <label for="travel-interests">Travel interests</label>
+                        <textarea id="travel-interests" name="travel-interests" placeholder="Places, styles, bucket-list ideas"></textarea>
+                    </div>
+                    <div>
+                        <label for="lifestyle-choices">Lifestyle choices</label>
+                        <textarea id="lifestyle-choices" name="lifestyle-choices" placeholder="Preferences, constraints, routines"></textarea>
+                    </div>
+                    <div class="form-actions full">
+                        <button type="button" class="primary-action" id="save-additional-preferences"><span data-icon="save" aria-hidden="true"></span>Save Preferences</button>
+                    </div>
+                </form>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">Your profile stays in local browser storage for this lightweight prototype.</footer>
+</body>
+</html>
