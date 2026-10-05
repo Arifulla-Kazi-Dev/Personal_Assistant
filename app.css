@@ -67,18 +67,6 @@ body {
     transition: background-color 180ms ease, color 180ms ease;
 }
 
-body::before {
-    position: fixed;
-    inset: 0;
-    z-index: -2;
-    pointer-events: none;
-    content: "";
-    background-image: linear-gradient(rgba(30, 58, 48, 0.045) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(30, 58, 48, 0.045) 1px, transparent 1px);
-    background-size: 48px 48px;
-    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), transparent 78%);
-}
-
 body[data-page="dashboard"]::after {
     position: fixed;
     inset: 0;
